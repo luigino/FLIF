@@ -52,10 +52,10 @@ PKG_CHECK_MODULES([ZLIB], [zlib], [:],
   AC_MSG_ERROR([*** zlib development files not found!]))
 
 AC_ARG_ENABLE([magic],
-              [AS_HELP_STRING([--disable-magic],
+               [AS_HELP_STRING([--disable-magic],
                               [Don't add file signature to magic file])],
               [],
               [enable_magic=yes])
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
