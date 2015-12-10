@@ -62,9 +62,9 @@ install: all
 	install -m 644 ../doc/flif.1 $(PREFIX)/$(man1dir)
 	install -m 755 ../tools/gif2flif $(PREFIX)/$(bindir)
 	install -m 755 ../tools/apng2flif $(PREFIX)/$(bindir)
-if ENABLE_MAGIC
+##if ENABLE_MAGIC
 	if ! grep -q FLIF $(sysconfdir)/magic; then cat ../doc/flif.magic >> $(sysconfdir)/magic; fi
-endif
+##endif
 
 remove:
 	rm -f $(PREFIX)/$(bindir)/flif
