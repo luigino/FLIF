@@ -14,12 +14,12 @@ lgpl: libflif_dec.so viewflif dflif
 OPTIMIZATIONS = -DNDEBUG -O3 -ftree-vectorize
 # there are often problems with clang and lto also it doesn't seem to know -fwhole-program
 if COMPILER_IS_GCC
-OPTIMIZATIONS += -flto -fwhole-program
+	OPTIMIZATIONS += -flto -fwhole-program
 endif
 
 LIB_OPTIMIZATIONS = -DNDEBUG -O3
 if COMPILER_IS_GCC
-LIB_OPTIMIZATIONS += -flto
+	LIB_OPTIMIZATIONS += -flto
 endif
 
 # Command-line FLIF encoding/decoding tool - GPL
@@ -63,7 +63,7 @@ install: all
 	install -m 755 ../tools/gif2flif $(PREFIX)/$(bindir)
 	install -m 755 ../tools/apng2flif $(PREFIX)/$(bindir)
 if ENABLE_MAGIC
-	if ! grep -q FLIF /etc/magic; then cat ../doc/flif.magic >> /etc/magic; fi
+	if ! grep -q FLIF $(sysconfdir)/magic; then cat ../doc/flif.magic >> $(sysconfdir)/magic; fi
 endif
 
 remove:
