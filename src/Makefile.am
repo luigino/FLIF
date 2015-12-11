@@ -66,7 +66,7 @@ bin_PROGRAMS = \
     viewflif
 
 flif_SOURCES = \
-    $(FILES_CPP) \ 
+    $(FILES_CPP) \
     $(FILES_H) \
     flif.cpp
 
