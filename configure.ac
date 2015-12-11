@@ -4,11 +4,13 @@
 AC_PREREQ([2.69])
 AC_INIT([FLIF], [0.2rc2], [jonsneyers@gmail.com])
 AM_INIT_AUTOMAKE([1.11])
+LT_INIT
+#AC_SUBST([LIBTOOL_DEPS])
 AC_CONFIG_SRCDIR([Makefile.am])
 
 # Checks for programs.
 AC_PROG_CXX
-AM_CONDITIONAL(COMPILER_IS_GCC, [test x"$CXX" = x"g++"])
+#AM_CONDITIONAL(COMPILER_IS_GCC, [test x"$CXX" = x"g++"])
 AC_PROG_CC
 AC_PROG_LN_S
 
@@ -52,10 +54,17 @@ PKG_CHECK_MODULES([ZLIB], [zlib], [:],
   AC_MSG_ERROR([*** zlib development files not found!]))
 
 AC_ARG_ENABLE([magic],
-               [AS_HELP_STRING([--disable-magic],
+              [AS_HELP_STRING([--disable-magic],
                               [Don't add file signature to magic file])],
               [],
               [enable_magic=yes])
+
+OPTIMIZATIONS = "-std=gnu++11 -DNDEBUG -O3 -ftree-vectorize -g0 -Wall"
+LIB_OPTIMIZATIONS = "-DNDEBUG -O3"
+if test x"$CXX" = x"g++"; then
+   OPTIMIZATIONS = "$OPTIMIZATIONS -flto -fwhole-program"
+   LIB_OPTIMIZATIONS = "$LIB_OPTIMIZATIONS -flto"
+fi
 
 AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
