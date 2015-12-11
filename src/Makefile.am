@@ -20,34 +20,18 @@ FILES_CPP = \
     transform/factory.cpp
 
 FILES_H = \
-    common.hpp \
     compiler-specific.hpp
     config.h \
     fileio.hpp \
     flif_config.h \
-    flif-dec.hpp \
-    flif-enc.hpp \
-    image/color_range.hpp \
-    image/crc32k.hpp \
-    image/image.hpp \
-    image/image-pam.hpp \
-    image/image-png.hpp \
-    image/image-pnm.hpp \
-    image/image-rggb.hpp \
-    io.cpp \
-    io.hpp \
-    maniac/bit.hpp \
-    maniac/chance.hpp \
     maniac/compound_enc.hpp \
     maniac/compound.hpp \
     maniac/rac_enc.hpp \
     maniac/rac.hpp \
     maniac/symbol_enc.hpp \
-    maniac/symbol.hpp \
     maniac/util.hpp \
     transform/bounds.hpp \
     transform/colorbuckets.hpp \
-    transform/factory.hpp \
     transform/framecombine.hpp \
     transform/framedup.hpp \
     transform/frameshape.hpp \
@@ -57,6 +41,23 @@ FILES_H = \
     transform/transform.hpp \
     transform/yiq.hpp
 
+LIB_INCLUDES = \
+    common.hpp \
+    flif-dec.hpp \
+    flif-enc.hpp \
+    image/color_range.hpp \
+    image/crc32k.hpp \
+    image/image.hpp \
+    image/image-pam.hpp \
+    image/image-png.hpp \
+    image/image-pnm.hpp \
+    image/image-rggb.hpp \
+    io.hpp \
+    maniac/bit.hpp \
+    maniac/chance.hpp \
+    maniac/symbol.hpp \
+    transform/factory.hpp
+
 lgpl: libflif_dec.so viewflif dflif // not too sure about this one
 
 bin_PROGRAMS = \
@@ -65,11 +66,12 @@ bin_PROGRAMS = \
     viewflif
 
 flif_SOURCES = \
-    $(FILES_CPP) \
+    $(FILES_CPP) \ 
     $(FILES_H) \
     flif.cpp
 
 lib_LTLIBRARIES = libflif_dec.la
+include_HEADERS = $(LIB_INCLUDES)
 
 libflif_dec_la_SOURCES = \
     $(FILES_CPP) \
